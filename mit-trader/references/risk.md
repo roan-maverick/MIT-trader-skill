@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Risk gate (check.py)
 
 Every order passes through here. A BLOCK is final for that order: it is not

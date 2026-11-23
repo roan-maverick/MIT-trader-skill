@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / execution: how to split a big order so it does not move the price against you (L22).
 
 Lecture 22 (Calculus of Variations and its Application in FX Execution)

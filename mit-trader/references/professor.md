@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # The Professor (the course)
 
 The pack's teacher. The other skills compute; this one explains why the

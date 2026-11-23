@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / montecarlo: the odds of a trade plan, from 10,000 simulated futures and from history.
 
 For each plan in mit/plan.json it simulates the next h trading days many

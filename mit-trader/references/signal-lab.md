@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Signal Lab (signal.py)
 
 The most important skill in the pack, because it is the one that says no.

@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Strategy hunter (hunt.py): the overnight research
 
 Hunts for trading rules that really paid, with the statistics of the course,

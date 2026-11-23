@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Execution planner (execution.py)
 
 For most personal orders the answer is "one market order is fine". For a

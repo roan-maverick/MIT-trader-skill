@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Options lab (options.py)
 
 An option price is a probability in disguise. This skill takes the disguise

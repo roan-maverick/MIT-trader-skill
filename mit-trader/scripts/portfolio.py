@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / portfolio: how much to buy (Kelly sizing) and how to split money across assets.
 
   size      turns each plan in mit/plan.json into an order in mit/orders.json.

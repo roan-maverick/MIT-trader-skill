@@ -1,3 +1,4 @@
+# Reviewed for local use
 """The worked example, end to end on real data: NVDA after its November 2026 selloff.
 
 Every number in README.md's walkthrough is checked here, offline, from the

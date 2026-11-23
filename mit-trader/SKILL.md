@@ -18,6 +18,8 @@ description: >-
 argument-hint: "[what you want: research, run, scan, a ticker, a question]"
 ---
 
+<!-- Reviewed for local use -->
+
 # The MIT Trader
 
 One skill, the whole course. MIT 18.S096 *Topics in Mathematics with

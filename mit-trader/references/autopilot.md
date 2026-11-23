@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Autopilot (autopilot.py): the trading bot
 
 Research overnight, run the playbook every morning, watch positions around

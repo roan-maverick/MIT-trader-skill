@@ -1,3 +1,4 @@
+# Reviewed for local use
 """Pairs, options, execution, autopilot, crypto and the risk gate's edge cases."""
 
 import json

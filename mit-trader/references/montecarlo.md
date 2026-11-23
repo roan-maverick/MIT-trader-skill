@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Monte Carlo odds (montecarlo.py)
 
 Before risking a dollar, play the trade forward many times and count.

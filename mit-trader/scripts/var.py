@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / var: how much could the whole account lose on a bad day? (L7, Value at Risk)
 
 It values what you hold (mit/portfolio.json) plus, with --include-orders, the

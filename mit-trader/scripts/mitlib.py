@@ -1,3 +1,4 @@
+# Reviewed for local use
 """mitlib: the shared math of the MIT Trader skill.
 
 Standard-library Python only (3.8+). Every tool in scripts/ imports it.

@@ -1,3 +1,4 @@
+# Reviewed for local use
 """The repo itself: one skill, its frontmatter, its guides, its safety text, the docs."""
 
 import json

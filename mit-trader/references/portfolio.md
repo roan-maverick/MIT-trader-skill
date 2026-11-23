@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Sizing and allocation (portfolio.py)
 
 Two questions: how big should this one trade be, and how should money be

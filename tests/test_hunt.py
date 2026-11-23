@@ -1,3 +1,4 @@
+# Reviewed for local use
 """The overnight research and the bot: the real-data result, and proof it finds a real edge."""
 
 import json

@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Scanner (scan.py)
 
 The first step of the pipeline. It looks for prices that are statistically

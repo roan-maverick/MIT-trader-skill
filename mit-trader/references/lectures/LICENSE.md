@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # License for the lecture study notes
 
 The files in this folder are independent study notes written from the public

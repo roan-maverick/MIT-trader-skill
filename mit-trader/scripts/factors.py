@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / factors: how much of a stock's move is just the market, and is any alpha left?
 
   beta   CAPM regression on a benchmark (L1, L6, Case Study 1): alpha, beta, R^2,

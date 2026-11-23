@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / broker: turn risk-passed orders into plain tickets, record your yes, log what happened.
 
 ticket.py never talks to a broker. Claude does, through your brokerage

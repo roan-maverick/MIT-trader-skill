@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / options: price options, read their Greeks, and turn option prices into probabilities.
 
   price     Black-Scholes price and Greeks (L19; Ito's lemma, L18, gives the PDE)

@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Volatility and exit planner (vol.py)
 
 Volatility is not constant: calm days follow calm days and wild days follow

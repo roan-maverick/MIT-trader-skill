@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Pairs trader (pairs.py)
 
 Two prices can each wander like random walks and still be tied together, so

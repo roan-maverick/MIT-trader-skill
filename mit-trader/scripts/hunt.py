@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / hunt: overnight research. Hunts for strategies that really paid, with the course's statistics.
 
 It tests a library of trading rules built from the course (mean reversion, L8;

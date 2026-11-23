@@ -1,3 +1,4 @@
+# Reviewed for local use
 """The shared math in mit-trader/scripts/mitlib.py, checked against known answers."""
 
 import json

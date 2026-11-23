@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Value at Risk (var.py)
 
 One number for the whole account: the 1-day loss you should exceed only one

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / regression (Signal Lab): is this setup's edge real, or luck?
 
 For one symbol and one setup it looks back over the whole history it has

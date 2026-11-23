@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / scanner: scan a universe of stocks, ETFs and coins for statistical setups.
 
 Setups (all on daily closes):

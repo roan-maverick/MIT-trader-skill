@@ -1,3 +1,4 @@
+# Reviewed for local use
 """A synthetic market with a planted edge: after a 10-day z-score of -2, prices drift up for 5 days."""
 import json, math, random, datetime as dt, sys
 def make(path, n_sym=30, n_days=2000, seed=7):

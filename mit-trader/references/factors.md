@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # Factor analyst (factors.py)
 
 "NVDA fell 14% today" means little until you know how much of that was the

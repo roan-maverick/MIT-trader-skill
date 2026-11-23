@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / risk: the gate between a proposed order and your broker. PASS or BLOCK, with the reason.
 
 Reads mit/orders.json and checks each order against your limits in

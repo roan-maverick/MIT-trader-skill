@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / autopilot: the whole MIT pipeline in one command, for a schedule. It never places an order.
 
   run    scanner -> regression -> volatility plan -> Monte Carlo -> Kelly sizing -> VaR -> risk,

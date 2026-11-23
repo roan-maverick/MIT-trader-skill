@@ -1,3 +1,4 @@
+<!-- Reviewed for local use -->
 # The MIT Trader skill
 
 **I turned MIT's entire quant finance course into one Claude skill.**

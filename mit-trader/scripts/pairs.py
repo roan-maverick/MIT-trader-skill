@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / pairs: statistical arbitrage on two assets that move together (L11, L12).
 
 Two prices can each wander like random walks and still be tied together: a

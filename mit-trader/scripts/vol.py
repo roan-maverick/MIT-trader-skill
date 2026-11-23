@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Reviewed for local use
 """mit-trader / volatility: forecast volatility with GARCH(1,1) and set stops and targets from it.
 
 L9 (Volatility Modeling): daily returns are not constant-variance. Big moves
