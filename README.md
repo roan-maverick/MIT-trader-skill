@@ -63,6 +63,10 @@ Both runs are in the test suite.
 That is the promise: **the exact math MIT teaches, finding real edges when
 they exist, and refusing to invent them when they don't.**
 
+![Nvidia on TradingView beside the overnight research: 51 rules rejected on real data, dip rules approved on a planted edge](docs/overnight-research.jpg)
+
+*Nvidia on November 21, 2026, next to the overnight research. On ten years of real prices every rule is rejected, so the bot does not trade. On a test market with a real edge planted in it, the same math approves the dip rules and refuses the rest.*
+
 ## Install
 
 Paste this into Claude:
