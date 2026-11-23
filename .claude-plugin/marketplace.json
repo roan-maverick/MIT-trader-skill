@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mit-trader-skill",
+  "description": "The MIT Trader skill: MIT OpenCourseWare's quant finance course as Claude skills",
+  "owner": {
+    "name": "roan-maverick",
+    "url": "https://github.com/roan-maverick"
+  },
+  "plugins": [
+    {
+      "name": "mit-trader-skill",
+      "description": "Fourteen Claude skills built on MIT 18.S096: a statistical scanner, a regression signal lab, GARCH volatility, Monte Carlo odds, factor models, Kelly sizing and portfolio optimization, Value at Risk, a risk gate, a broker step (paper by default, never without your yes), pairs trading, options math, optimal execution, an autopilot and a professor.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/roan-maverick/MIT-trader-skill"
+    }
+  ]
+}

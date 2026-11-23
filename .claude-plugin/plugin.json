@@ -1,0 +1,27 @@
+{
+  "name": "mit-trader-skill",
+  "description": "MIT OpenCourseWare's quant finance course (18.S096) turned into 14 Claude skills: scan, test the edge, forecast volatility, simulate 10,000 futures, size with Kelly, measure VaR, check every order, and trade on paper, never without your yes.",
+  "version": "1.0.0",
+  "author": {
+    "name": "roan-maverick",
+    "url": "https://github.com/roan-maverick"
+  },
+  "homepage": "https://github.com/roan-maverick/MIT-trader-skill",
+  "repository": "https://github.com/roan-maverick/MIT-trader-skill",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "claude-skills",
+    "quantitative-finance",
+    "algorithmic-trading",
+    "garch",
+    "monte-carlo",
+    "kelly-criterion",
+    "value-at-risk",
+    "pairs-trading",
+    "black-scholes",
+    "paper-trading",
+    "crypto"
+  ],
+  "skills": "./"
+}
