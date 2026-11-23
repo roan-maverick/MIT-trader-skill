@@ -1,4 +1,4 @@
-"""The shared math in lib/mitlib.py, checked against known answers."""
+"""The shared math in mit-trader/scripts/mitlib.py, checked against known answers."""
 
 import json
 import math
@@ -9,7 +9,7 @@ import unittest
 
 from _load import ROOT, BARS
 
-sys.path.insert(0, os.path.join(ROOT, "lib"))
+sys.path.insert(0, os.path.join(ROOT, "mit-trader", "scripts"))
 import mitlib as M  # noqa: E402
 
 

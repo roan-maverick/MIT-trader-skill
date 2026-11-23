@@ -10,15 +10,15 @@ import unittest
 
 from _load import ASOF, BARS, Workdir, load, run
 
-scan = load("mit-scanner", "scan")
-signal = load("mit-regression", "signal")
-vol = load("mit-volatility", "vol")
-mc = load("mit-montecarlo", "montecarlo")
-factors = load("mit-factors", "factors")
-port = load("mit-portfolio", "portfolio")
-var = load("mit-var", "var")
-risk = load("mit-risk", "check")
-broker = load("mit-broker", "ticket")
+scan = load("scan")
+signal = load("signal")
+vol = load("vol")
+mc = load("montecarlo")
+factors = load("factors")
+port = load("portfolio")
+var = load("var")
+risk = load("check")
+broker = load("ticket")
 D = ["--data", BARS, "--asof", ASOF]
 
 
@@ -124,7 +124,7 @@ class NvdaWalkthrough(unittest.TestCase):
             doc["orders"][0]["qty"] = "5"
             write(os.path.join(wd, "orders.json"), doc)
             code, out = run(broker, "--now", "2026-11-23 10:01", "show")
-            self.assertIn("changed after /mit-risk", out)
+            self.assertIn("changed after the risk gate", out)
             code, out = run(broker, "--now", "2026-11-24 10:01", "show")
             self.assertIn("NOT READY", out)
 

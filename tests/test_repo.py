@@ -1,4 +1,4 @@
-"""The repo itself: skill folders, frontmatter, the shared library copies, safety text, docs."""
+"""The repo itself: one skill, its frontmatter, its guides, its safety text, the docs."""
 
 import json
 import os
@@ -7,84 +7,73 @@ import unittest
 
 from _load import ROOT
 
-SKILLS = ["mit-scanner", "mit-regression", "mit-volatility", "mit-montecarlo", "mit-factors",
-          "mit-portfolio", "mit-var", "mit-risk", "mit-broker", "mit-pairs", "mit-options",
-          "mit-execution", "mit-autopilot", "mit-professor"]
-# skills on the way to an order say plainly that nothing goes through without the user's yes
-ORDER_PATH = ["mit-scanner", "mit-regression", "mit-volatility", "mit-montecarlo", "mit-portfolio",
-              "mit-risk", "mit-broker", "mit-pairs", "mit-autopilot"]
+SKILL = os.path.join(ROOT, "mit-trader")
+TOOLS = ["autopilot", "check", "execution", "factors", "hunt", "mitlib", "montecarlo", "options", "pairs",
+         "portfolio", "scan", "signal", "ticket", "var", "vol"]
+GUIDES = ["autopilot", "broker", "execution", "factors", "hunt", "montecarlo", "options", "pairs", "portfolio",
+          "professor", "risk", "scanner", "signal-lab", "var", "volatility"]
+OLD = r"/mit-(scanner|regression|volatility|montecarlo|factors|portfolio|var|risk|broker|pairs|options|execution|autopilot|professor)\b"
 
 
-def frontmatter(path):
-    with open(path, encoding="utf-8") as fh:
-        text = fh.read()
-    m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
-    return (m.group(1) if m else ""), text
+def read(*p):
+    with open(os.path.join(*p), encoding="utf-8") as fh:
+        return fh.read()
 
 
 class Repo(unittest.TestCase):
-    def test_fourteen_skill_folders(self):
-        found = sorted(d for d in os.listdir(ROOT) if os.path.isfile(os.path.join(ROOT, d, "SKILL.md")))
-        self.assertEqual(found, sorted(SKILLS))
+    def test_exactly_one_skill(self):
+        found = [d for d in os.listdir(ROOT) if os.path.isfile(os.path.join(ROOT, d, "SKILL.md"))]
+        self.assertEqual(found, ["mit-trader"])
 
     def test_frontmatter(self):
-        for s in SKILLS:
-            fm, text = frontmatter(os.path.join(ROOT, s, "SKILL.md"))
-            self.assertIn("name: %s\n" % s, fm + "\n", s)
-            self.assertIn("description:", fm, s)
-            desc = " ".join(fm.split("description:", 1)[1].split("argument-hint")[0].split())
-            self.assertLess(len(desc), 1024, s)
-            self.assertIn("Use when", desc, s)
-            self.assertIn("## Safety", text, s)
+        text = read(SKILL, "SKILL.md")
+        fm = re.match(r"^---\n(.*?)\n---\n", text, re.S).group(1)
+        self.assertIn("name: mit-trader\n", fm + "\n")
+        desc = " ".join(fm.split("description:", 1)[1].split("argument-hint")[0].replace(">-", "").split())
+        self.assertLess(len(desc), 1024)
+        self.assertIn("Use for", desc)
+        self.assertIn("never without your yes", desc)
 
-    def test_order_path_safety(self):
-        for s in ORDER_PATH:
-            _, text = frontmatter(os.path.join(ROOT, s, "SKILL.md"))
-            self.assertTrue("places an order" in text or "place an order" in text or "places, changes" in text, s)
-            self.assertIn("yes", text, s)
-
-    def test_every_tool_has_an_identical_mitlib(self):
-        with open(os.path.join(ROOT, "lib", "mitlib.py"), encoding="utf-8") as fh:
-            src = fh.read()
-        for s in SKILLS:
-            folder = os.path.join(ROOT, s)
-            tools = [f for f in os.listdir(folder) if f.endswith(".py") and f != "mitlib.py"]
-            if not tools:
-                continue
-            with open(os.path.join(folder, "mitlib.py"), encoding="utf-8") as fh:
-                self.assertEqual(fh.read(), src, "%s/mitlib.py differs: run tools/sync_lib.py" % s)
-
-    def test_skill_md_commands_exist(self):
-        for s in SKILLS:
-            _, text = frontmatter(os.path.join(ROOT, s, "SKILL.md"))
-            for script in re.findall(r'\$\{CLAUDE_SKILL_DIR\}/([\w.]+\.py)', text):
-                self.assertTrue(os.path.isfile(os.path.join(ROOT, s, script)), "%s: %s" % (s, script))
-
-    def test_professor_has_26_lectures(self):
-        files = sorted(os.listdir(os.path.join(ROOT, "mit-professor", "lectures")))
+    def test_tools_and_guides(self):
+        self.assertEqual(sorted(f[:-3] for f in os.listdir(os.path.join(SKILL, "scripts")) if f.endswith(".py")), TOOLS)
+        self.assertEqual(sorted(f[:-3] for f in os.listdir(os.path.join(SKILL, "references")) if f.endswith(".md")), GUIDES)
+        files = sorted(f for f in os.listdir(os.path.join(SKILL, "references", "lectures")) if re.match(r"L\d\d\.md$", f))
         self.assertEqual(files, ["L%02d.md" % i for i in range(1, 27)])
 
-    def test_readme_names_every_skill_and_the_disclaimer(self):
-        with open(os.path.join(ROOT, "README.md"), encoding="utf-8") as fh:
-            readme = fh.read()
-        for s in SKILLS:
-            self.assertIn("/" + s, readme, s)
-        self.assertIn("Not affiliated with", readme)
-        self.assertIn("Not financial advice", readme)
-        self.assertIn("never without your yes", readme)
+    def test_every_command_and_guide_named_exists(self):
+        lectures = [os.path.join("references", "lectures", "L%02d.md" % i) for i in range(1, 27)]
+        for name in ["SKILL.md"] + [os.path.join("references", g + ".md") for g in GUIDES] + lectures:
+            text = read(SKILL, name)
+            for script in re.findall(r"scripts/(\w+\.py)", text):
+                self.assertTrue(os.path.isfile(os.path.join(SKILL, "scripts", script)), "%s: %s" % (name, script))
+            for ref in re.findall(r"references/([\w-]+\.md)", text):
+                self.assertTrue(os.path.isfile(os.path.join(SKILL, "references", ref)), "%s: %s" % (name, ref))
+            self.assertIsNone(re.search(OLD, text), name)
+
+    def test_no_old_skill_names_in_tools_or_readme(self):
+        for f in TOOLS:
+            self.assertIsNone(re.search(OLD, read(SKILL, "scripts", f + ".py")), f)
+        self.assertIsNone(re.search(OLD, read(ROOT, "README.md")))
+
+    def test_safety_everywhere(self):
+        self.assertIn("never batch yeses", read(SKILL, "SKILL.md").lower())
+        for g in GUIDES:
+            self.assertIn("## Safety", read(SKILL, "references", g + ".md"), g)
+
+    def test_readme(self):
+        readme = read(ROOT, "README.md")
+        for phrase in ("one Claude skill", "overnight", "Not affiliated with", "Not financial advice",
+                       "never without your yes", "hunt"):
+            self.assertIn(phrase, readme)
 
     def test_plugin_manifests(self):
-        with open(os.path.join(ROOT, ".claude-plugin", "plugin.json")) as fh:
-            p = json.load(fh)
-        with open(os.path.join(ROOT, ".claude-plugin", "marketplace.json")) as fh:
-            m = json.load(fh)
+        p = json.loads(read(ROOT, ".claude-plugin", "plugin.json"))
+        m = json.loads(read(ROOT, ".claude-plugin", "marketplace.json"))
         self.assertEqual(p["name"], "mit-trader-skill")
         self.assertEqual(m["plugins"][0]["name"], p["name"])
-        self.assertEqual(p["skills"], "./")
 
     def test_config_example_is_safe(self):
-        with open(os.path.join(ROOT, "mit-portfolio", "config.example.json")) as fh:
-            c = json.load(fh)
+        c = json.loads(read(SKILL, "config.example.json"))
         self.assertTrue(c["paper"])
         self.assertFalse(c["allow_short"])
         self.assertFalse(c["allow_margin"])
@@ -97,8 +86,7 @@ class Repo(unittest.TestCase):
             dirs[:] = [d for d in dirs if d not in (".git", "__pycache__", "fixtures")]
             for f in files:
                 if f.endswith((".py", ".md", ".json")):
-                    with open(os.path.join(base, f), encoding="utf-8") as fh:
-                        self.assertIsNone(pat.search(fh.read()), f)
+                    self.assertIsNone(pat.search(read(base, f)), f)
 
 
 if __name__ == "__main__":

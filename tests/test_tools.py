@@ -6,15 +6,15 @@ import unittest
 
 from _load import ASOF, BARS, ROOT, Workdir, load, run
 
-pairs = load("mit-pairs", "pairs")
-options = load("mit-options", "options")
-execution = load("mit-execution", "execution")
-autopilot = load("mit-autopilot", "autopilot")
-risk = load("mit-risk", "check")
-port = load("mit-portfolio", "portfolio")
-mc = load("mit-montecarlo", "montecarlo")
-vol = load("mit-volatility", "vol")
-signal = load("mit-regression", "signal")
+pairs = load("pairs")
+options = load("options")
+execution = load("execution")
+autopilot = load("autopilot")
+risk = load("check")
+port = load("portfolio")
+mc = load("montecarlo")
+vol = load("vol")
+signal = load("signal")
 D = ["--data", BARS, "--asof", ASOF]
 
 
@@ -61,7 +61,7 @@ class Options(unittest.TestCase):
 
     def test_breeden_litzenberger_recovers_lognormal(self):
         import sys
-        sys.path.insert(0, os.path.join(ROOT, "lib"))
+        sys.path.insert(0, os.path.join(ROOT, "mit-trader", "scripts"))
         import mitlib as M
         with Workdir() as wd:
             f = os.path.join(wd, "chain.csv")
@@ -101,7 +101,7 @@ class Autopilot(unittest.TestCase):
     def test_run_writes_a_report_and_places_nothing(self):
         with Workdir() as wd:
             code, out = run(autopilot, "run", "--now", "2026-11-23 10:00", *D)
-            self.assertIn("Setups found: 32. Proven edge (/mit-regression EDGE): 0.", out)
+            self.assertIn("Setups found: 32. Proven edge (the signal lab EDGE): 0.", out)
             self.assertIn("Nothing was ordered", out)
             self.assertTrue(os.path.exists(os.path.join(wd, "report.md")))
             self.assertFalse(os.path.exists(os.path.join(wd, "state", "broker.json")))
@@ -146,7 +146,7 @@ class RiskEdges(unittest.TestCase):
             self.assertIn("options are off", out)
             write(os.path.join(wd, "signals.json"), {"results": {"NVDA:dip": {"verdict": "NONE"}}})
             code, out = self.check(wd, self.base, cfg={"require_edge": True})
-            self.assertIn("edge: /mit-regression rated this setup NONE", out)
+            self.assertIn("edge: the signal lab rated this setup NONE", out)
 
     def test_crypto_needs_no_bell_and_no_bracket(self):
         with Workdir() as wd:

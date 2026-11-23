@@ -1,4 +1,4 @@
-"""Load a tool from a skill folder (the folder names have hyphens) and run it."""
+"""Load a tool from the mit-trader skill and run it."""
 
 import contextlib
 import importlib.util
@@ -13,9 +13,14 @@ BARS = os.path.join(FIX, "bars")
 ASOF = "2026-11-20"
 
 
-def load(folder, name):
-    path = os.path.join(ROOT, folder, name + ".py")
-    spec = importlib.util.spec_from_file_location("mit_%s_%s" % (folder.replace("-", "_"), name), path)
+SCRIPTS = os.path.join(ROOT, "mit-trader", "scripts")
+UNIVERSE = os.path.join(FIX, "universe-10y.json.gz")
+
+
+def load(name):
+    """Load one tool from mit-trader/scripts."""
+    path = os.path.join(SCRIPTS, name + ".py")
+    spec = importlib.util.spec_from_file_location("mit_trader_%s" % name, path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
